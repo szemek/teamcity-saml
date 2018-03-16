@@ -1,3 +1,9 @@
 language: java
 jdk:
   - oraclejdk8
+after_success:
+- "./gradlew bintrayUpload"
+env:
+  global:
+    - BINTRAY_USER=szemek
+    - secure: "md+xK7UrzTHMMlz2qQ4M0gomPJyvVhNFPARLQAHu+BKNXY10Nhpfiq6nVI9zu668HNk3e+PgLshsOh4Q6gPOcSbsDBqJu4NbVI9SNwTcnyQbbMElFSZuOu++blfHfdgVt8ozHozL2bpDsdfd93KNGtlvedU7ya3qWjeuPzmjCpIakqNMa6AQHcHaEHoH+6bJFIpxKGmVM+jfmBy4Ze91G/QYhg/ZNZu/gdoAtgnSk8OS8JJH+4ZQEKxE+Afq/tGbziHJHLPF0lnoCjhxanG1+DRD0RbVTRPAdRcP5LbEJnIZnbhjSzyKLB9OgdjyUKtJ3XpT+qX+gh44Z3llX8+QY2MSTSsVP232tI5oj+7MiF1t/Rov3ZVXkQGgtdcrTYlRZnb5M2/taJlFBn2YgNUau2c2xvwjmG7oDhWIgxooPyeh1A4LhhGKLT6Yp3hxiQUiqiZIdWdR/4CZiV8ilpfzfqdbS4+Femjf5eeillEVTaMZDszFrEHfv+q8as3s1X9Y/fR74VVX1ippXkx1Ie5CJhqHYKQMr6q8sVdVNq1IUQqcRntKorsKprBxCtqgtdMLsk8P52RZ1kHjpAy4si5JnvSSvrzF0LtPqLkCu0UppT7zIVJPJAaT/r4L/kL/NoSN1PsVtzSKsNgXxMys0UeMemCfkviNFRkmLU47IuLcUKo="
