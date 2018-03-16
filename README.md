@@ -1,10 +1,12 @@
+[ ![Download](https://api.bintray.com/packages/szemek/generic/teamcity-saml/images/download.svg) ](https://bintray.com/szemek/generic/teamcity-saml/_latestVersion)
+
 # teamcity-saml
 
 SAML 2.0 authentication plugin 
 
 ## Installation
 
-Run `gradle serverPlugin` and follow instruction [https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins](https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins)
+Get the latest version of plugin from [ ![Download](https://api.bintray.com/packages/szemek/generic/teamcity-saml/images/download.svg) ](https://bintray.com/szemek/generic/teamcity-saml/_latestVersion) and follow instruction [https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins](https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins).
 
 ## Configuration
 
