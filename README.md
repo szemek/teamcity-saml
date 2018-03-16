@@ -21,6 +21,15 @@ You can decide if you want to hide user/password form on login screen (worth lea
 
 You can consider to disable also "Allow user registration from the login page" in "Built-in" module.
 
+### CORS support
+
+If during authentication you will see similar error like below:
+
+`403 Forbidden: Responding with 403 status code due to failed CSRF check: request's "Origin" header value "null" does not match Host/X-Forwarded-Host header values or server's CORS-trusted hosts, consider adding "Origin: http://localhost:8111" header.`
+
+then follow instruction [https://confluence.jetbrains.com/display/TCD10/REST+API#RESTAPI-CORSSupport](https://confluence.jetbrains.com/display/TCD10/REST+API#RESTAPI-CORSSupport).
+
+
 ## Development
 
 Plugin can be build and deployed by `gradle deployToTeamcity`
