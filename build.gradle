@@ -58,6 +58,7 @@ teamcity {
             displayName = project.name
             version = project.version
             vendorName = 'Przemysław Dąbek'
+            vendorUrl = 'https://github.com/szemek/teamcity-saml/'
             description = 'SAML 2.0 authentication plugin'
             downloadUrl = 'https://github.com/szemek/teamcity-saml/'
             email = 'przemyslaw.dabek@uxpin.com'
