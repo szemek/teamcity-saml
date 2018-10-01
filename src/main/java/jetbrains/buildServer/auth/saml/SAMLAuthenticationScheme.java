@@ -86,11 +86,27 @@ public class SAMLAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
                 return HttpAuthenticationResult.authenticated(principal.get(), true)
                         .withRedirect("/");
             }
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-        }
 
-        return sendUnauthorizedRequest(request, response, "Unauthenticated since user could not be found or created.");
+            return sendUnauthorizedRequest(request, response, "Unauthenticated since user could not be found or created.");
+        } catch (com.onelogin.saml2.exception.Error e) {
+            //thrown if this is not a SAML request (no "SAMLResponse" request parameter)
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Got error while attempting SAML authentication, ignoring SAML module. Error: " + e.getMessage(), e);
+            }
+            return HttpAuthenticationResult.notApplicable();
+        } catch (com.onelogin.saml2.exception.SettingsException e) {
+            LOG.warn("Error initializing SAML authentication: " + e.getMessage());
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Error initializing SAML authentication: " + e.getMessage(), e);
+            }
+            return HttpAuthenticationResult.notApplicable();
+        } catch (Exception e) {
+            LOG.warn("Error processing SAML request: " + e.toString());
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Error processing SAML request: " + e.toString(), e);
+            }
+            return sendUnauthorizedRequest(request, response, "Error processing SAML request");
+        }
     }
 
     private HttpAuthenticationResult sendUnauthorizedRequest(HttpServletRequest request, HttpServletResponse response, String reason) throws IOException {
