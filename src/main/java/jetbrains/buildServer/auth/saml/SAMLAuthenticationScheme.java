@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -66,6 +67,17 @@ public class SAMLAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
         return errors.isEmpty() ? super.validate(properties) : errors;
     }
 
+    static private String getStringFromAtrributes(String attribute, Map<String, List<String>> attributes) {
+        List<String> attributeList = attributes.get(attribute);
+        if (attributeList == null) {
+            return null;
+        }
+        if (attributeList.size() < 1) {
+            return null;
+        }
+        return attributeList.get(0);
+    }
+
     @NotNull
     @Override
     public HttpAuthenticationResult processAuthenticationRequest(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Map<String, String> schemeProperties) throws IOException {
@@ -75,7 +87,19 @@ public class SAMLAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
             auth.processResponse();
 
             String nameId = auth.getNameId();
-            SAMLUser user = new SAMLUser(nameId);
+            Map<String, List<String>> attributes = auth.getAttributes(); 
+            String email = getStringFromAtrributes("email", attributes);
+            String first_name = getStringFromAtrributes("first_name", attributes);
+            String last_name = getStringFromAtrributes("last_name", attributes);
+            String name = null;
+            if (first_name != null && last_name != null) {
+                name = first_name + " " + last_name;
+            } else if (first_name != null) {
+                name = first_name;
+            } else if (last_name != null) {
+                name = last_name;
+            }
+            SAMLUser user = new SAMLUser(nameId, name, email);
             LOG.info(user);
 
             boolean allowCreatingNewUsersByLogin = AuthModuleUtil.allowCreatingNewUsersByLogin(schemeProperties, DEFAULT_ALLOW_CREATING_NEW_USERS_BY_LOGIN);
