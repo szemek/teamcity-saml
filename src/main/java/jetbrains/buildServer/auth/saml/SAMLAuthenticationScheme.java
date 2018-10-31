@@ -89,15 +89,15 @@ public class SAMLAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
             String nameId = auth.getNameId();
             Map<String, List<String>> attributes = auth.getAttributes(); 
             String email = getStringFromAtrributes("email", attributes);
-            String first_name = getStringFromAtrributes("first_name", attributes);
-            String last_name = getStringFromAtrributes("last_name", attributes);
+            String firstName = getStringFromAtrributes("first_name", attributes);
+            String lastName = getStringFromAtrributes("last_name", attributes);
             String name = null;
-            if (first_name != null && last_name != null) {
-                name = first_name + " " + last_name;
-            } else if (first_name != null) {
-                name = first_name;
-            } else if (last_name != null) {
-                name = last_name;
+            if (firstName != null && lastName != null) {
+                name = firstName + " " + lastName;
+            } else if (firstName != null) {
+                name = firstName;
+            } else if (lastName != null) {
+                name = lastName;
             }
             SAMLUser user = new SAMLUser(nameId, name, email);
             LOG.info(user);
