@@ -87,10 +87,12 @@ public class SAMLAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
             auth.processResponse();
 
             String nameId = auth.getNameId();
-            Map<String, List<String>> attributes = auth.getAttributes(); 
+            Map<String, List<String>> attributes = auth.getAttributes();
+            LOG.info("Received SAML attributes: " + attributes);
             String email = getStringFromAtrributes("email", attributes);
             String firstName = getStringFromAtrributes("first_name", attributes);
             String lastName = getStringFromAtrributes("last_name", attributes);
+            String userGroupKey = getStringFromAtrributes("teamcity_group", attributes);
             String name = null;
             if (firstName != null && lastName != null) {
                 name = firstName + " " + lastName;
@@ -99,7 +101,7 @@ public class SAMLAuthenticationScheme extends HttpAuthenticationSchemeAdapter {
             } else if (lastName != null) {
                 name = lastName;
             }
-            SAMLUser user = new SAMLUser(nameId, name, email);
+            SAMLUser user = new SAMLUser(nameId, name, email, userGroupKey);
             LOG.info(user);
 
             boolean allowCreatingNewUsersByLogin = AuthModuleUtil.allowCreatingNewUsersByLogin(schemeProperties, DEFAULT_ALLOW_CREATING_NEW_USERS_BY_LOGIN);

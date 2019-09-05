@@ -1,6 +1,7 @@
 package jetbrains.buildServer.auth.saml;
 
 import jetbrains.buildServer.controllers.AuthorizationInterceptor;
+import jetbrains.buildServer.groups.UserGroupManager;
 import jetbrains.buildServer.serverSide.SBuildServer;
 import jetbrains.buildServer.serverSide.auth.LoginConfiguration;
 import jetbrains.buildServer.users.UserModel;
@@ -24,8 +25,8 @@ public class PluginConfiguration {
     }
 
     @Bean
-    public ServerPrincipalFactory serverPrincipalFactory(UserModel userModel) {
-        return new ServerPrincipalFactory(userModel);
+    public ServerPrincipalFactory serverPrincipalFactory(UserModel userModel, LocalGroupManager localGroupManager) {
+        return new ServerPrincipalFactory(userModel, localGroupManager);
     }
 
     @Bean
@@ -52,5 +53,10 @@ public class PluginConfiguration {
         SAMLAuthenticationScheme authenticationScheme = new SAMLAuthenticationScheme(pluginDescriptor, principalFactory, samlClient, schemeProperties);
         loginConfiguration.registerAuthModuleType(authenticationScheme);
         return authenticationScheme;
+    }
+
+    @Bean
+    public LocalGroupManager localGroupManager(UserGroupManager userGroupManager) {
+        return new LocalGroupManager(userGroupManager);
     }
 }

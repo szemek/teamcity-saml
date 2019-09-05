@@ -1,5 +1,7 @@
 package jetbrains.buildServer.auth.saml;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -8,15 +10,17 @@ public class SAMLUser {
     private final String id;
     private final String name;
     private final String email;
+    private final String userGroupKey;
 
     public SAMLUser(String id) {
-        this(id, null, null);
+        this(id, null, null, null);
     }
 
-    public SAMLUser(String id, String name, String email) {
+    public SAMLUser(String id, String name, String email, String userGroupKey) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.userGroupKey = userGroupKey;
     }
 
     public String getId() {
@@ -31,12 +35,18 @@ public class SAMLUser {
         return email;
     }
 
+    public String getUserGroupKey() {
+        return userGroupKey;
+    }
+
     @Override
     public String toString() {
-        return "SAMLUser{" + "id='" + getId() + '\'' +
-                ", name='" + getName() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                '}';
+        return "SAMLUser{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", userGroupKey='" + userGroupKey + '\'' +
+            '}';
     }
 
     @Override
