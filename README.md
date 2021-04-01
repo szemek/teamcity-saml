@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/szemek/teamcity-saml.svg?branch=master)](https://travis-ci.org/szemek/teamcity-saml)
-[ ![Download](https://api.bintray.com/packages/szemek/generic/teamcity-saml/images/download.svg) ](https://bintray.com/szemek/generic/teamcity-saml/_latestVersion)
 
 # teamcity-saml
 
