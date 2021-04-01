@@ -5,9 +5,11 @@
 
 SAML 2.0 authentication plugin 
 
-## Installation
+## Development
 
-Get the latest version of plugin from [ ![Download](https://api.bintray.com/packages/szemek/generic/teamcity-saml/images/download.svg) ](https://bintray.com/szemek/generic/teamcity-saml/_latestVersion) and follow instruction [https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins](https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins).
+Plugin can be build and deployed by `gradle deployToTeamcity`
+
+Teamcity instance for testing can be setup by `docker-compose up`
 
 ## Configuration
 
@@ -30,12 +32,6 @@ If during authentication you will see similar error like below:
 
 then follow instruction [https://confluence.jetbrains.com/display/TCD10/REST+API#RESTAPI-CORSSupport](https://confluence.jetbrains.com/display/TCD10/REST+API#RESTAPI-CORSSupport).
 
-
-## Development
-
-Plugin can be build and deployed by `gradle deployToTeamcity`
-
-Teamcity instance for testing can be setup by `docker-compose up`
 
 ## Acknowledgements
 
