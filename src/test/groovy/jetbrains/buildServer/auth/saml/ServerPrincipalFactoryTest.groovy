@@ -10,10 +10,11 @@ class ServerPrincipalFactoryTest extends Specification {
 
     UserModel userModel = Mock()
     SUser teamcityUser = Mock()
+    LocalGroupManager localGroupManager = Mock()
     ServerPrincipalFactory principalFactory;
 
     def setup() {
-        principalFactory = new ServerPrincipalFactory(userModel)
+        principalFactory = new ServerPrincipalFactory(userModel, localGroupManager)
     }
 
     def "read user from model"() {

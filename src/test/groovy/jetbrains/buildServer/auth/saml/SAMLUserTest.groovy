@@ -17,10 +17,11 @@ class SAMLUserTest extends Specification {
         user.id == 'user'
         user.name == null
         user.email == null
+        user.userGroupKey == null;
     }
 
     def "should return name if id is not given"() {
         expect:
-        new SAMLUser(null, 'name', 'email@domain').id == 'email@domain'
+        new SAMLUser(null, 'name', 'email@domain', null).id == 'email@domain'
     }
 }
